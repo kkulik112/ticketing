@@ -17,7 +17,7 @@ app.use(signinRouter)
 app.use(signoutRouter)
 app.use(signupRouter)
 
-app.get('*', () => {throw new NotFoundError()})
+app.all('*', () => {throw new NotFoundError()})
 
 app.use(errorHandler)
 
