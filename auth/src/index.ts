@@ -1,4 +1,5 @@
 import express from 'express'
+import 'express-async-errors'
 import mongoose from 'mongoose'
 
 import { NotFoundError } from './errors/not-found-error'
@@ -18,7 +19,7 @@ app.use(signinRouter)
 app.use(signoutRouter)
 app.use(signupRouter)
 
-app.all('*', () => {throw new NotFoundError()})
+app.all('*', async () => {throw new NotFoundError()})
 
 app.use(errorHandler)
 
