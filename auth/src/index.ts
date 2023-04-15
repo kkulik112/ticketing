@@ -29,6 +29,12 @@ app.all('*', async () => {throw new NotFoundError()})
 app.use(errorHandler)
 
 const start = async () => {
+
+  // Check if JWT secret key variable is available
+  if(!process.env.JWT_KEY){
+    throw new Error('JWT_KEY environment variable must be defined')
+  }
+
   try{
     await mongoose.connect('mongodb://auth-mongo-srv:27017/auth')
     console.log('Connected to MongoDB')

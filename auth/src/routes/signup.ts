@@ -39,7 +39,9 @@ async (req: Request, res: Response) => {
   const userJwt = jwt.sign({
     user: user.id,
     email: user.email
-  }, "privateKey")
+  },
+    process.env.JWT_KEY!
+   )
 
   // Store JWT token in a session
   req.session = {
